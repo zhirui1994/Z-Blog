@@ -1,6 +1,8 @@
 package com.zhirui.zblog.model.Vo;
 
-public class UserVo {
+import java.io.Serializable;
+
+public class UserVo implements Serializable {
     private Integer uid;
     private String username;
     private String password;
