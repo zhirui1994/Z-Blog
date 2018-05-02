@@ -18,6 +18,7 @@ public class IndexController extends BaseController {
 
     @GetMapping(value = {"admin", "admin/index"})
     public String index(HttpServletRequest request) {
+
         return "admin/index";
     }
 
