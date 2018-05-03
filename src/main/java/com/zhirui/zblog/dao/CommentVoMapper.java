@@ -1,6 +1,7 @@
 package com.zhirui.zblog.dao;
 
 import com.zhirui.zblog.model.Vo.CommentVo;
+import com.zhirui.zblog.model.Vo.CommentVoExample;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

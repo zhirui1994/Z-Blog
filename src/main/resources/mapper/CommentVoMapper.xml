@@ -62,7 +62,7 @@
         from t_comments
         where coid = #{coid,jdbcType=INTEGER}
     </select>
-    <select id="selectByExampleWithBLOBs" parameterType="com.zhirui.zblog.model.Vo.CommentVoEXample" resultMap="ResultMapWithBLOBs">
+    <select id="selectByExampleWithBLOBs" parameterType="com.zhirui.zblog.model.Vo.CommentVoExample" resultMap="ResultMapWithBLOBs">
         select
         <if test="distinct">
             distinct

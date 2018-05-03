@@ -3,14 +3,14 @@ package com.zhirui.zblog.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.model.Vo.CommentVo;
-import com.zhirui.zblog.model.Vo.CommentVoEXample;
+import com.zhirui.zblog.model.Vo.CommentVoExample;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-public class SiteServiceImpl extends ISiteService {
+public class SiteServiceImpl implements ISiteService {
 
     @Resource
     private CommentVoMapper commentDao;
@@ -20,12 +20,11 @@ public class SiteServiceImpl extends ISiteService {
         if (limit < 0 || limit > 10) {
             limit = 10;
         }
-        CommentVoEXample eXample = new CommentVoEXample();
-        eXample.setOrderByClause("created desc");
+        CommentVoExample example = new CommentVoExample();
+        example.setOrderByClause("created desc");
         PageHelper.startPage(1, limit);
-        List<CommentVo> byPage == commentDao.sel
-        return null;
-
+        List<CommentVo> byPage = commentDao.selectByExampleWithBLOBs(example);
+        return byPage;
     }
 
     @Override
