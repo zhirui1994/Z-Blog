@@ -1,9 +1,9 @@
 package com.zhirui.zblog.dao;
 
 import com.zhirui.zblog.model.Vo.UserVo;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public interface UserVoMapper  {
     int insert(UserVo record);
     UserVo selectedByPrimaryKey(Integer uid);
