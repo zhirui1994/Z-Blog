@@ -16,10 +16,6 @@ public interface CommentVoMapper {
 
     CommentVo selectByPrimaryKey(Integer coid);
 
-    List<CommentVo> selectByExampleWithBLOBs(CommentVoExample example);
-
-    List<CommentVo> selectByExample(CommentVoExample example);
-
     int updateByPrimaryKeySelective(CommentVo record);
 
     int updateByPrimaryKeyWithBLOBs(CommentVo record);

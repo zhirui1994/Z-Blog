@@ -4,10 +4,12 @@ import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class SiteServiceImpl implements ISiteService {
 
     @Resource
