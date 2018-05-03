@@ -141,4 +141,86 @@
             </if>
         </trim>
     </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhirui.zblog.model.Vo.CommentVo" >
+        update tcomments
+        <set>
+            <if test="coid != null">
+                coid = #{coid,jdbcType=INTEGER}
+            </if>
+            <if test="cid != null">
+                cid = #{cid,jdbcType=INTEGER},
+            </if>
+            <if test="created != null">
+                created = #{created,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="authorId != null">
+                author_id = #{authorId,jdbcType=INTEGER},
+            </if>
+            <if test="ownerId != null">
+                owner_id = #{ownerId,jdbcType=INTEGER},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="agent != null">
+                agent = #{agent,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="parent != null">
+                parent = #{parent,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where coid = #{coid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="map">
+        update t_comments
+        set coid = #{coid,jdbcType=INTEGER},
+          cid = #{cid,jdbcType=INTEGER},
+          created = #{created,jdbcType=INTEGER},
+          author = #{author,jdbcType=VARCHAR},
+          author_id = #{authorId,jdbcType=INTEGER},
+          owner_id = #{ownerId,jdbcType=INTEGER},
+          mail = #{mail,jdbcType=VARCHAR},
+          url = #{url,jdbcType=VARCHAR},
+          ip = #{ip,jdbcType=VARCHAR},
+          agent = #{agent,jdbcType=VARCHAR},
+          type = #{type,jdbcType=VARCHAR},
+          status = #{status,jdbcType=VARCHAR},
+          parent = #{parent,jdbcType=INTEGER},
+          content = #{content,jdbcType=LONGVARCHAR}
+        where coid = #{coid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zhirui.zblog.model.Vo.CommentVo">
+        update t_comments
+        set cid = #{cid,jdbcType=INTEGER},
+          created = #{created,jdbcType=INTEGER},
+          author = #{author,jdbcType=VARCHAR},
+          author_id = #{authorId,jdbcType=INTEGER},
+          owner_id = #{ownerId,jdbcType=INTEGER},
+          mail = #{mail,jdbcType=VARCHAR},
+          url = #{url,jdbcType=VARCHAR},
+          ip = #{ip,jdbcType=VARCHAR},
+          agent = #{agent,jdbcType=VARCHAR},
+          type = #{type,jdbcType=VARCHAR},
+          status = #{status,jdbcType=VARCHAR},
+          parent = #{parent,jdbcType=INTEGER}
+        where coid = #{coid,jdbcType=INTEGER}
+    </update>
 </mapper>
