@@ -1,9 +1,7 @@
 package com.zhirui.zblog.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.model.Vo.CommentVo;
-import com.zhirui.zblog.model.Vo.CommentVoExample;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
 
@@ -20,10 +18,8 @@ public class SiteServiceImpl implements ISiteService {
         if (limit < 0 || limit > 10) {
             limit = 10;
         }
-        CommentVoExample example = new CommentVoExample();
-        example.setOrderByClause("created desc");
-        PageHelper.startPage(1, limit);
-        List<CommentVo> byPage = commentDao.selectByExampleWithBLOBs(example);
+
+        List<CommentVo> byPage = commentDao.selectByPageWithBLOBs(limit);
         return byPage;
     }
 

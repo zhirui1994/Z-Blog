@@ -100,6 +100,14 @@
             </if>
         </if>
     </select>
+    <select id="selectByPageWithBLOBs" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from t_comments
+        limit 0 10
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from t_comments
         where coid = #{coid,jdbcType=INTEGER}
