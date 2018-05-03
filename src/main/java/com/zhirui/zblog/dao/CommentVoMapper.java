@@ -3,6 +3,8 @@ package com.zhirui.zblog.dao;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CommentVoMapper {
     int deleteByPrimaryKey(Integer coid);
@@ -12,6 +14,10 @@ public interface CommentVoMapper {
     int insertSelective(CommentVo record);
 
     CommentVo selectByPrimaryKey(Integer coid);
+
+    List<CommentVo> selectByExampleWithBLOBs(CommentVoExample example);
+
+    List<CommentVo> selectByExample(CommentVoExample example);
 
     int updateByPrimaryKeySelective(CommentVo record);
 
