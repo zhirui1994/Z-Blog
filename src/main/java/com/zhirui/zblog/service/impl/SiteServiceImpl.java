@@ -27,7 +27,12 @@ public class SiteServiceImpl implements ISiteService {
 
     @Override
     public List<ContentVo> recentContents(int limit) {
-        return null;
+        if (limit < 0 || limit > 10) {
+            limit = 10;
+        }
+
+        List<ContentVo> byPage = null;
+        return byPage;
     }
 
     @Override

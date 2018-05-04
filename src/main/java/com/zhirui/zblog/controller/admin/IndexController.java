@@ -3,6 +3,7 @@ package com.zhirui.zblog.controller.admin;
 import com.zhirui.zblog.controller.BaseController;
 import com.zhirui.zblog.model.Bo.ResetResponseBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
+import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.model.Vo.UserVo;
 import com.zhirui.zblog.service.impl.SiteServiceImpl;
 import com.zhirui.zblog.service.impl.UserServiceImpl;
@@ -25,7 +26,7 @@ public class IndexController extends BaseController {
 
     @GetMapping(value = {"admin", "admin/index"})
     public String index(HttpServletRequest request) {
-
+        List<CommentVo> comments = siteService.recentComments(10);
         return "admin/index";
     }
 
@@ -34,6 +35,13 @@ public class IndexController extends BaseController {
     public ResetResponseBo<ArrayList<CommentVo>> getCommentsByPage(@RequestParam int limit) {
         List<CommentVo> comments = siteService.recentComments(limit);
         return ResetResponseBo.ok(comments);
+    }
+
+    @GetMapping(value = "content")
+    @ResponseBody
+    public ResetResponseBo<ArrayList> getContentsByPage(@RequestParam int limit) {
+        List<ContentVo> contents = siteService.recentContents(limit);
+        return ResetResponseBo.ok(contents);
     }
 
     @GetMapping(value = "user")
