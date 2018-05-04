@@ -27,6 +27,7 @@ public class IndexController extends BaseController {
     @GetMapping(value = {"admin", "admin/index"})
     public String index(HttpServletRequest request) {
         List<CommentVo> comments = siteService.recentComments(10);
+        List<ContentVo> contents = siteService.recentContents(10);
         return "admin/index";
     }
 

@@ -1,6 +1,7 @@
 package com.zhirui.zblog.service.impl;
 
 import com.zhirui.zblog.dao.CommentVoMapper;
+import com.zhirui.zblog.dao.ContentVoMapper;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
@@ -14,6 +15,9 @@ public class SiteServiceImpl implements ISiteService {
 
     @Resource
     private CommentVoMapper commentDao;
+
+    @Resource
+    private ContentVoMapper contentDao;
 
     @Override
     public List<CommentVo> recentComments(int limit) {
@@ -31,7 +35,7 @@ public class SiteServiceImpl implements ISiteService {
             limit = 10;
         }
 
-        List<ContentVo> byPage = null;
+        List<ContentVo> byPage = contentDao.selectByPage(limit);
         return byPage;
     }
 
