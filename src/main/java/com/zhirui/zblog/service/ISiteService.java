@@ -1,5 +1,6 @@
 package com.zhirui.zblog.service;
 
+import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 
@@ -26,4 +27,10 @@ public interface ISiteService {
      * @return
      */
     CommentVo getComment(Integer cuid);
+
+    /**
+     * 获取后台统计数据
+     * @return
+     */
+    StatisticsBo getStatistcs();
 }

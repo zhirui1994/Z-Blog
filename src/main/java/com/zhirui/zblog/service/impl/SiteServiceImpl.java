@@ -2,6 +2,7 @@ package com.zhirui.zblog.service.impl;
 
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.dao.ContentVoMapper;
+import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
@@ -42,5 +43,11 @@ public class SiteServiceImpl implements ISiteService {
     @Override
     public CommentVo getComment(Integer cuid) {
         return null;
+    }
+
+    @Override
+    public StatisticsBo getStatistcs() {
+        StatisticsBo statistics = new StatisticsBo();
+        return statistics;
     }
 }

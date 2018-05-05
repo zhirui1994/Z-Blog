@@ -2,6 +2,7 @@ package com.zhirui.zblog.controller.admin;
 
 import com.zhirui.zblog.controller.BaseController;
 import com.zhirui.zblog.model.Bo.ResetResponseBo;
+import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.model.Vo.UserVo;
@@ -28,6 +29,10 @@ public class IndexController extends BaseController {
     public String index(HttpServletRequest request) {
         List<CommentVo> comments = siteService.recentComments(10);
         List<ContentVo> contents = siteService.recentContents(10);
+        StatisticsBo statistics = siteService.getStatistcs();
+        request.setAttribute("comments", comments);
+        request.setAttribute("articles", contents);
+        request.setAttribute("statistics", statistics);
         return "admin/index";
     }
 
