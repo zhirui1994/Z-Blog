@@ -19,4 +19,10 @@
           #{authorId,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{created,jdbcType=INTEGER}
         )
     </insert>
+    <select id="selectByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_logs
+        limit #{arg0}, #{arg1}
+    </select>
 </mapper>
