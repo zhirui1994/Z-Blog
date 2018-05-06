@@ -43,6 +43,13 @@ public class IndexController extends BaseController {
         return ResetResponseBo.ok(comments);
     }
 
+    @GetMapping(value = "statistics")
+    @ResponseBody
+    public ResetResponseBo getStatistics() {
+        StatisticsBo statistics = siteService.getStatistcs();
+        return ResetResponseBo.ok(statistics);
+    }
+
     @GetMapping(value = "content")
     @ResponseBody
     public ResetResponseBo<ArrayList> getContentsByPage(@RequestParam int limit) {
