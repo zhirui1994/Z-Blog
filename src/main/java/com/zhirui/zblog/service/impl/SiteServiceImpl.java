@@ -1,5 +1,6 @@
 package com.zhirui.zblog.service.impl;
 
+import com.zhirui.zblog.dao.AttachVoMapper;
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.dao.ContentVoMapper;
 import com.zhirui.zblog.model.Bo.StatisticsBo;
@@ -19,6 +20,9 @@ public class SiteServiceImpl implements ISiteService {
 
     @Resource
     private ContentVoMapper contentDao;
+
+    @Resource
+    private AttachVoMapper attachDao;
 
     @Override
     public List<CommentVo> recentComments(int limit) {
@@ -48,6 +52,14 @@ public class SiteServiceImpl implements ISiteService {
     @Override
     public StatisticsBo getStatistcs() {
         StatisticsBo statistics = new StatisticsBo();
+        Long contentsCount = contentDao.count();
+        Long commentsCount = commentDao.count();
+        Long attachsCount = attachDao.count();
+        Long linksCount = Long.valueOf(10);
+        statistics.setArticles(contentsCount);
+        statistics.setAttachs(attachsCount);
+        statistics.setComments(commentsCount);
+        statistics.setLinks(linksCount);
         return statistics;
     }
 }

@@ -231,4 +231,7 @@
           parent = #{parent,jdbcType=INTEGER}
         where coid = #{coid,jdbcType=INTEGER}
     </update>
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from t_comments
+    </select>
 </mapper>

@@ -23,4 +23,6 @@ public interface CommentVoMapper {
     int updateByPrimaryKey(CommentVo record);
 
     List<CommentVo> selectByPageWithBLOBs(int limit);
+
+    long count();
 }

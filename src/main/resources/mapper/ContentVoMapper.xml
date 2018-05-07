@@ -44,4 +44,7 @@
         from t_contents
         limit 0, #{arg1}
     </select>
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from t_contents
+    </select>
 </mapper>

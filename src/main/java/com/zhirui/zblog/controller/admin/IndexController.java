@@ -11,7 +11,6 @@ import com.zhirui.zblog.service.impl.LogServiceImpl;
 import com.zhirui.zblog.service.impl.SiteServiceImpl;
 import com.zhirui.zblog.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

@@ -21,4 +21,6 @@ public interface ContentVoMapper {
     int updateByPrimaryKey(ContentVo record);
 
     int updateByprimaryKeySelective(ContentVo record);
+
+    long count();
 }
