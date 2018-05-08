@@ -1,7 +1,10 @@
 package com.zhirui.zblog.dao;
 
 import com.zhirui.zblog.model.Vo.UserVo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserVoMapper  {
@@ -10,4 +13,5 @@ public interface UserVoMapper  {
     int updateByPrimaryKey(UserVo record);
     int updateByPrimaryKeySelective(UserVo record);
     int deleteByPrimaryKey(Integer uid);
+    List<UserVo> login(String username, String password);
 }

@@ -1,5 +1,6 @@
 package com.zhirui.zblog.controller.admin;
 
+import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Bo.ResetResponseBo;
 import com.zhirui.zblog.model.Vo.UserVo;
 import com.zhirui.zblog.service.impl.UserServiceImpl;
@@ -31,6 +32,7 @@ public class AuthController {
                                    HttpServletResponse response) {
 
         UserVo user = userService.login(username, password);
-        return ResetResponseBo.ok(user);
+        request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
+        return ResetResponseBo.ok();
     }
 }

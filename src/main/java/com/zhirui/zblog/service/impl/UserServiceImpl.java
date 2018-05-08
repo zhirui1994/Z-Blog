@@ -7,6 +7,7 @@ import com.zhirui.zblog.utils.TaleUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -31,7 +32,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserVo login(String username, String password) {
         String pwd = TaleUtils.MD5encode(username + password);
-        return null;
+        List<UserVo> users = userDao.login(username, pwd);
+        return users.get(0);
     }
 
     @Override
