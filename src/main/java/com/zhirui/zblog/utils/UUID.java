@@ -1,6 +1,14 @@
 package com.zhirui.zblog.utils;
 
+import java.util.Random;
+
 public abstract class UUID {
+
+    static Random r = new Random();
+
+    public static int random(int min, int max) {
+        return r.nextInt(max - min + 1) + min;
+    }
     private static final char[] _UU64 = "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".toCharArray();
 
     /**

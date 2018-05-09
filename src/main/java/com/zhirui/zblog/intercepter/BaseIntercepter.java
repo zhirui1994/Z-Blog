@@ -4,6 +4,7 @@ import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.dto.Types;
 import com.zhirui.zblog.model.Vo.UserVo;
 import com.zhirui.zblog.service.impl.UserServiceImpl;
+import com.zhirui.zblog.utils.Commons;
 import com.zhirui.zblog.utils.MapCache;
 import com.zhirui.zblog.utils.TaleUtils;
 import com.zhirui.zblog.utils.UUID;
@@ -25,6 +26,9 @@ public class BaseIntercepter implements HandlerInterceptor {
 
     @Resource
     private UserServiceImpl userService;
+
+    @Resource
+    private Commons commons;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -53,7 +57,7 @@ public class BaseIntercepter implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
+        request.setAttribute("commons", commons);
     }
 
     @Override
