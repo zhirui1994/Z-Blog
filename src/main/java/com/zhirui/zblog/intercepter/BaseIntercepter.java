@@ -42,6 +42,12 @@ public class BaseIntercepter implements HandlerInterceptor {
                 request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
             }
         }
+
+        // spring boot 2.0 拦截掉静态资源请求，这里手动通过这些文件请求
+        if(uri.endsWith(".js") || uri.endsWith(".css") || uri.endsWith(".jpg") || uri.endsWith(".png")) {
+            return true;
+        }
+
         if (uri.startsWith("/admin") && !uri.startsWith("/admin/login") && user == null) {
             response.sendRedirect(request.getContextPath() + "/admin/login");
             return false;
