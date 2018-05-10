@@ -10,4 +10,9 @@ public class WebConst {
      * aes加密加盐
      */
     public static String AES_SALT = "0123456789abcdef";
+
+    /**
+     * 最大页码
+     */
+    public static final int MAX_PAGE = 100;
 }
