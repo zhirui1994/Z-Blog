@@ -1,9 +1,11 @@
 package com.zhirui.zblog.controller;
 
 import com.zhirui.zblog.constant.WebConst;
+import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.impl.ContentServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller("IndexController")
@@ -18,6 +21,7 @@ public class IndexController extends BaseController {
 
     @Resource
     private ContentServiceImpl contentService;
+
 
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -30,5 +34,27 @@ public class IndexController extends BaseController {
         ArrayList<ContentVo> contents = (ArrayList<ContentVo>) contentService.getContents(p, limit);
         request.setAttribute("articles", contents);
         return this.render("index");
+    }
+
+    public String getArticle(HttpServletRequest request, @PathVariable String cid) {
+        ContentVo content = contentService.getContent(cid);
+        if (content == null || "draft".equals(content.getStatus())) {
+            return this.render_404();
+        }
+        request.setAttribute("article", content);
+        request.setAttribute("is_post", true);
+        co
+        return this.render("post");
+    }
+
+    private void completeArticle(HttpServletRequest request, ContentVo content) {
+        if (content.getAllowComment()) {
+            String cp = request.getParameter("cp");
+            if (StringUtils.isEmpty(cp)) {
+                cp = "1";
+            }
+            request.setAttribute("cp", cp);
+            List<CommentVo> commentsPaginator =
+        }
     }
 }

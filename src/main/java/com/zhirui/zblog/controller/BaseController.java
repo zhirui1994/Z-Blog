@@ -18,4 +18,8 @@ public class BaseController {
         request.setAttribute("keywords", keywords);
         return this;
     }
+
+    public String render_404() {
+        return "comm/error_404";
+    }
 }
