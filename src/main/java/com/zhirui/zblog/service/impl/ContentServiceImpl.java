@@ -27,7 +27,9 @@ public class ContentServiceImpl implements IContentService {
 
     @Override
     public ContentVo getContent(String id) {
-        return null;
+
+        ContentVo content = contentDao.selectByPrimaryKey(Integer.parseInt(id));
+        return content;
     }
 
     @Override

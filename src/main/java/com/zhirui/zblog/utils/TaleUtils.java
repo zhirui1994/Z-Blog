@@ -2,12 +2,14 @@ package com.zhirui.zblog.utils;
 
 import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Vo.UserVo;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class TaleUtils {
 
@@ -70,5 +72,9 @@ public class TaleUtils {
             }
         }
         return null;
+    }
+
+    public static String mdToHtml(String markdown) {
+        return markdown;
     }
 }

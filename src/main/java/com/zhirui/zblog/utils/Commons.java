@@ -52,7 +52,7 @@ public final class Commons {
     }
 
     public static String permalink(Integer cid, String slug) {
-        return site_url("/articles/" + (!StringUtils.isEmpty(slug) ? slug : cid.toString()));
+        return site_url("/articles/" + cid.toString());
     }
 
     public static String permalink(ContentVo content) {
@@ -138,5 +138,24 @@ public final class Commons {
      */
     public static String site_title() {
         return site_option("site_title");
+    }
+
+    public static String fmtdate(Integer unixTime) {
+        return fmtdate(unixTime, "yyyy-MM-dd");
+    }
+
+    public static String fmtdate(Integer unixTime, String patten) {
+        if (unixTime != null && StringUtils.isEmpty(patten.trim())) {
+            return DateKit.formatDateByUnixTime(unixTime, patten);
+        }
+        return "";
+    }
+
+    public static String article(String value) {
+        if (!StringUtils.isEmpty(value)) {
+            value = value.replace("<!--more-->", "\r\n");
+            return TaleUtils.mdToHtml(value);
+        }
+        return "";
     }
 }

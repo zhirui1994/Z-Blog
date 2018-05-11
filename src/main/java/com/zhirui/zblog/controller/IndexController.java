@@ -3,12 +3,11 @@ package com.zhirui.zblog.controller;
 import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
+import com.zhirui.zblog.service.impl.CommentServiceImpl;
 import com.zhirui.zblog.service.impl.ContentServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,8 @@ public class IndexController extends BaseController {
     @Resource
     private ContentServiceImpl contentService;
 
+    @Resource
+    private CommentServiceImpl commentService;
 
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -36,6 +37,7 @@ public class IndexController extends BaseController {
         return this.render("index");
     }
 
+    @RequestMapping(value = "articles/{cid}", method = RequestMethod.GET)
     public String getArticle(HttpServletRequest request, @PathVariable String cid) {
         ContentVo content = contentService.getContent(cid);
         if (content == null || "draft".equals(content.getStatus())) {
@@ -43,7 +45,7 @@ public class IndexController extends BaseController {
         }
         request.setAttribute("article", content);
         request.setAttribute("is_post", true);
-        co
+        completeArticle(request, content);
         return this.render("post");
     }
 
@@ -54,7 +56,8 @@ public class IndexController extends BaseController {
                 cp = "1";
             }
             request.setAttribute("cp", cp);
-            List<CommentVo> commentsPaginator =
+            List<CommentVo> commentsPaginator = commentService.getComments(content.getCid(), Integer.parseInt(cp), 6);
+            request.setAttribute("comments", commentsPaginator);
         }
     }
 }
