@@ -1,10 +1,12 @@
 package com.zhirui.zblog.controller;
 
 import com.zhirui.zblog.constant.WebConst;
+import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.impl.CommentServiceImpl;
 import com.zhirui.zblog.service.impl.ContentServiceImpl;
+import com.zhirui.zblog.service.impl.SiteServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,9 @@ public class IndexController extends BaseController {
 
     @Resource
     private CommentServiceImpl commentService;
+
+    @Resource
+    private SiteServiceImpl siteService;
 
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
@@ -59,5 +64,11 @@ public class IndexController extends BaseController {
             List<CommentVo> commentsPaginator = commentService.getComments(content.getCid(), Integer.parseInt(cp), 6);
             request.setAttribute("comments", commentsPaginator);
         }
+    }
+
+    public String archives(HttpServletRequest request) {
+        List<ArchiveBo> archives = siteService.getArchives();
+        request.setAttribute("archives", archives);
+        return this.render("archives");
     }
 }

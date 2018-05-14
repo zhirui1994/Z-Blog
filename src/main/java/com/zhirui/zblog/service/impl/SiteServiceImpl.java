@@ -3,6 +3,7 @@ package com.zhirui.zblog.service.impl;
 import com.zhirui.zblog.dao.AttachVoMapper;
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.dao.ContentVoMapper;
+import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
@@ -61,5 +62,9 @@ public class SiteServiceImpl implements ISiteService {
         statistics.setComments(commentsCount);
         statistics.setLinks(linksCount);
         return statistics;
+    }
+
+    public List<ArchiveBo> getArchives() {
+
     }
 }
