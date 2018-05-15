@@ -7,9 +7,9 @@ import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.model.Vo.LogVo;
 import com.zhirui.zblog.model.Vo.UserVo;
-import com.zhirui.zblog.service.impl.LogServiceImpl;
-import com.zhirui.zblog.service.impl.SiteServiceImpl;
-import com.zhirui.zblog.service.impl.UserServiceImpl;
+import com.zhirui.zblog.service.LogService;
+import com.zhirui.zblog.service.SiteService;
+import com.zhirui.zblog.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +22,13 @@ import java.util.List;
 @RequestMapping("/")
 public class IndexController extends BaseController {
     @Resource
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Resource
-    private SiteServiceImpl siteService;
+    private SiteService siteService;
 
     @Resource
-    private LogServiceImpl logService;
+    private LogService logService;
 
     @GetMapping(value = {"admin", "admin/index"})
     public String index(HttpServletRequest request) {

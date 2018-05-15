@@ -4,9 +4,9 @@ import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
-import com.zhirui.zblog.service.impl.CommentServiceImpl;
-import com.zhirui.zblog.service.impl.ContentServiceImpl;
-import com.zhirui.zblog.service.impl.SiteServiceImpl;
+import com.zhirui.zblog.service.CommentServiceImpl;
+import com.zhirui.zblog.service.ContentService;
+import com.zhirui.zblog.service.SiteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +21,13 @@ import java.util.List;
 public class IndexController extends BaseController {
 
     @Resource
-    private ContentServiceImpl contentService;
+    private ContentService contentService;
 
     @Resource
     private CommentServiceImpl commentService;
 
     @Resource
-    private SiteServiceImpl siteService;
+    private SiteService siteService;
 
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {

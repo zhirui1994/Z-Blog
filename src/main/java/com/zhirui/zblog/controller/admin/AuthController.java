@@ -3,7 +3,7 @@ package com.zhirui.zblog.controller.admin;
 import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Bo.ResetResponseBo;
 import com.zhirui.zblog.model.Vo.UserVo;
-import com.zhirui.zblog.service.impl.UserServiceImpl;
+import com.zhirui.zblog.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthController {
 
     @Resource
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("/login")
     public String login() {

@@ -3,7 +3,7 @@ package com.zhirui.zblog.intercepter;
 import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.dto.Types;
 import com.zhirui.zblog.model.Vo.UserVo;
-import com.zhirui.zblog.service.impl.UserServiceImpl;
+import com.zhirui.zblog.service.UserService;
 import com.zhirui.zblog.utils.Commons;
 import com.zhirui.zblog.utils.MapCache;
 import com.zhirui.zblog.utils.TaleUtils;
@@ -25,7 +25,7 @@ public class BaseIntercepter implements HandlerInterceptor {
     private MapCache cache = MapCache.single();
 
     @Resource
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Resource
     private Commons commons;

@@ -1,4 +1,4 @@
-package com.zhirui.zblog.service.impl;
+package com.zhirui.zblog.service;
 
 import com.zhirui.zblog.dao.AttachVoMapper;
 import com.zhirui.zblog.dao.CommentVoMapper;
@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SiteServiceImpl implements ISiteService {
+public class SiteService implements ISiteService {
 
     @Resource
     private CommentVoMapper commentDao;

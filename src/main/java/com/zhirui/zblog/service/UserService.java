@@ -1,4 +1,4 @@
-package com.zhirui.zblog.service.impl;
+package com.zhirui.zblog.service;
 
 import com.zhirui.zblog.dao.UserVoMapper;
 import com.zhirui.zblog.model.Vo.UserVo;
@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserService implements IUserService {
 
     @Resource
     private UserVoMapper userDao;
