@@ -1,5 +1,6 @@
 package com.zhirui.zblog.dao;
 
+import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,6 @@ public interface ContentVoMapper {
     int updateByprimaryKeySelective(ContentVo record);
 
     long count();
+
+    List<ArchiveBo> findReturnArchiveBo();
 }

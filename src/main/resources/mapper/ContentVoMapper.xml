@@ -47,4 +47,12 @@
     <select id="count" resultType="java.lang.Long">
         select count(*) from t_contents
     </select>
+    <resultMap id="archiveBoMap" type="com.zhirui.zblog.model.Bo.ArchiveBo">
+        <id column="date" property="date" />
+        <result column="count" property="count" />
+    </resultMap>
+    <select id="findReturnArchiveBo" resultMap="archiveBoMap">
+        select FROM_UNIXTIME(created, '%Y年%m月') as date,
+        count(*) as count from t_contents where type = 'post' and status = 'publish' group by date order by date desc
+    </select>
 </mapper>

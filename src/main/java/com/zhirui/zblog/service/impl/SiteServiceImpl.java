@@ -8,9 +8,12 @@ import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.service.ISiteService;
+import com.zhirui.zblog.utils.DateKit;
+import javafx.scene.shape.Arc;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,6 +68,13 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     public List<ArchiveBo> getArchives() {
-
+        List<ArchiveBo> archives = contentDao.findReturnArchiveBo();
+        if (archives != null) {
+            archives.forEach(archive -> {
+                String date = archive.getDate();
+                Date sd = DateKit.dateFormat(date, "yyyy年MM月");
+                int start = DateKit.
+            });
+        }
     }
 }
