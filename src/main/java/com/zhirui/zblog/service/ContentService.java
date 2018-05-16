@@ -2,7 +2,6 @@ package com.zhirui.zblog.service;
 
 import com.zhirui.zblog.dao.ContentVoMapper;
 import com.zhirui.zblog.model.Vo.ContentVo;
-import com.zhirui.zblog.service.IContentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

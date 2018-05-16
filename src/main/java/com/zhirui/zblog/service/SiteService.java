@@ -7,9 +7,7 @@ import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
-import com.zhirui.zblog.service.ISiteService;
 import com.zhirui.zblog.utils.DateKit;
-import javafx.scene.shape.Arc;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class SiteService implements ISiteService {
+public class SiteService {
 
     @Resource
     private CommentVoMapper commentDao;
@@ -28,7 +26,6 @@ public class SiteService implements ISiteService {
     @Resource
     private AttachVoMapper attachDao;
 
-    @Override
     public List<CommentVo> recentComments(int limit) {
         if (limit < 0 || limit > 10) {
             limit = 10;
@@ -38,7 +35,6 @@ public class SiteService implements ISiteService {
         return byPage;
     }
 
-    @Override
     public List<ContentVo> recentContents(int limit) {
         if (limit < 0 || limit > 10) {
             limit = 10;
@@ -48,12 +44,10 @@ public class SiteService implements ISiteService {
         return byPage;
     }
 
-    @Override
     public CommentVo getComment(Integer cuid) {
         return null;
     }
 
-    @Override
     public StatisticsBo getStatistcs() {
         StatisticsBo statistics = new StatisticsBo();
         Long contentsCount = contentDao.count();
@@ -73,8 +67,10 @@ public class SiteService implements ISiteService {
             archives.forEach(archive -> {
                 String date = archive.getDate();
                 Date sd = DateKit.dateFormat(date, "yyyy年MM月");
-                int start = DateKit.
+                int start = DateKit.getUnixTimeByDate(sd);
+                int end = DateKit.getUnixTimeByDate(DateKit.dateAdd(DateKit.INTERVAL_MONTH,  sd, 1)) -1;
             });
         }
+        return null;
     }
 }

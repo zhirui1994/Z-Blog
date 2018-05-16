@@ -4,7 +4,7 @@ import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
-import com.zhirui.zblog.service.CommentServiceImpl;
+import com.zhirui.zblog.service.CommentService;
 import com.zhirui.zblog.service.ContentService;
 import com.zhirui.zblog.service.SiteService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class IndexController extends BaseController {
     private ContentService contentService;
 
     @Resource
-    private CommentServiceImpl commentService;
+    private CommentService commentService;
 
     @Resource
     private SiteService siteService;

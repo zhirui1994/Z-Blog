@@ -2,7 +2,6 @@ package com.zhirui.zblog.service;
 
 import com.zhirui.zblog.dao.LogVoMapper;
 import com.zhirui.zblog.model.Vo.LogVo;
-import com.zhirui.zblog.service.ILogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
