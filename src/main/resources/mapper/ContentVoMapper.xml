@@ -97,7 +97,7 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
-        <if test="limit != mull">
+        <if test="limit != null">
             <if test="offset != null">
                 limt ${offset}, ${limit}
             </if>

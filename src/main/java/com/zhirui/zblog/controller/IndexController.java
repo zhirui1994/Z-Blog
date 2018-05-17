@@ -66,6 +66,7 @@ public class IndexController extends BaseController {
         }
     }
 
+    @GetMapping(value = "archives")
     public String archives(HttpServletRequest request) {
         List<ArchiveBo> archives = siteService.getArchives();
         request.setAttribute("archives", archives);
