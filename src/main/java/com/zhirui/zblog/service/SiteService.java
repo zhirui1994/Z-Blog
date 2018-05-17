@@ -3,10 +3,12 @@ package com.zhirui.zblog.service;
 import com.zhirui.zblog.dao.AttachVoMapper;
 import com.zhirui.zblog.dao.CommentVoMapper;
 import com.zhirui.zblog.dao.ContentVoMapper;
+import com.zhirui.zblog.dto.Types;
 import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Bo.StatisticsBo;
 import com.zhirui.zblog.model.Vo.CommentVo;
 import com.zhirui.zblog.model.Vo.ContentVo;
+import com.zhirui.zblog.model.Vo.ContentVoExample;
 import com.zhirui.zblog.utils.DateKit;
 import org.springframework.stereotype.Service;
 
@@ -65,12 +67,21 @@ public class SiteService {
         List<ArchiveBo> archives = contentDao.findReturnArchiveBo();
         if (archives != null) {
             archives.forEach(archive -> {
+                ContentVoExample example = new ContentVoExample();
+                ContentVoExample.Criteria criteria = example.createCriteria()
+                        .andTypeEqualTo(Types.ARTICLE.getType())
+                        .andTypeEqualTo(Types.PUBLISH.getType());
+                example.setOrderByClause("created desc");
                 String date = archive.getDate();
                 Date sd = DateKit.dateFormat(date, "yyyy年MM月");
                 int start = DateKit.getUnixTimeByDate(sd);
                 int end = DateKit.getUnixTimeByDate(DateKit.dateAdd(DateKit.INTERVAL_MONTH,  sd, 1)) -1;
+                criteria.andCreatedGreaterThan(start);
+                criteria.andCreatedLessThan(end);
+                List<ContentVo> contents = contentDao.selectByExample(example);
+                archive.setArticles(contents);
             });
         }
-        return null;
+        return archives;
     }
 }

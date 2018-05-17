@@ -2,6 +2,7 @@ package com.zhirui.zblog.dao;
 
 import com.zhirui.zblog.model.Bo.ArchiveBo;
 import com.zhirui.zblog.model.Vo.ContentVo;
+import com.zhirui.zblog.model.Vo.ContentVoExample;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface ContentVoMapper {
     ContentVo selectByPrimaryKey(Integer cid);
 
     List<ContentVo> selectByPage(Integer limit);
+
+    List<ContentVo> selectByExample(ContentVoExample example);
 
     int updateByPrimaryKey(ContentVo record);
 
