@@ -29,4 +29,6 @@ public interface ContentVoMapper {
     long count();
 
     List<ArchiveBo> findReturnArchiveBo();
+
+    List<ContentVo> selectByExampleWithBLOBs(ContentVoExample contentVoExample);
 }
