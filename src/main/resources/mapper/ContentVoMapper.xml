@@ -122,4 +122,22 @@
             order by ${orderByClause}
         </if>
     </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="cid" parameterType="com.zhirui.zblog.model.Vo.ContentVo">
+      insert into t_contents (
+          cid, title, slug,
+          created, modified, author_id,
+          type, status, tags,
+          categories, hits, comments_num,
+          allow_comment, allow_ping, allow_feed,
+          content
+      )
+      values (
+          #{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{slug,jdbcType=VARCHAR},
+          #{created,jdbcType=INTEGER}, #{modified,jdbcType=INTEGER}, #{authorId,jdbcType=INTEGER},
+          #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR},
+          #{categories,jdbcType=VARCHAR}, #{hits,jdbcType=INTEGER}, #{commentsNum,jdbcType=INTEGER},
+          #{allowComment,jdbcType=BIT}, #{allowPing,jdbcType=BIT}, #{allowFeed,jdbcType=BIT},
+          #{content,jdbcType=LONGVARCHAR}
+      )
+    </insert>
 </mapper>
