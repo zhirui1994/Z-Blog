@@ -1,5 +1,8 @@
 package com.zhirui.zblog.controller;
 
+import com.zhirui.zblog.model.Vo.UserVo;
+import com.zhirui.zblog.utils.TaleUtils;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class BaseController {
@@ -21,5 +24,9 @@ public class BaseController {
 
     public String render_404() {
         return "comm/error_404";
+    }
+
+    public UserVo user(HttpServletRequest request) {
+        return TaleUtils.getLoginUser(request);
     }
 }

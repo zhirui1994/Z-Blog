@@ -1,16 +1,19 @@
 package com.zhirui.zblog.controller.admin;
 
 import com.github.pagehelper.PageInfo;
+import com.zhirui.zblog.constant.WebConst;
+import com.zhirui.zblog.controller.BaseController;
 import com.zhirui.zblog.dto.Types;
+import com.zhirui.zblog.model.Bo.ResetResponseBo;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import com.zhirui.zblog.model.Vo.ContentVoExample;
 import com.zhirui.zblog.model.Vo.MetaVo;
+import com.zhirui.zblog.model.Vo.UserVo;
 import com.zhirui.zblog.service.ContentService;
 import com.zhirui.zblog.service.MetaService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "admin/article")
-public class ArticleController {
+public class ArticleController extends BaseController {
     @Resource
     private ContentService contentService;
 
@@ -42,5 +45,21 @@ public class ArticleController {
         List<MetaVo> categories = metaService.getMetas(Types.CATEGORY.getType());
         request.setAttribute("categories", categories);
         return "admin/article_edit";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "publish")
+    public ResetResponseBo publishArticle(ContentVo content, HttpServletRequest request) {
+        UserVo user = this.user(request);
+        content.setAuthorId(user.getUid());
+        content.setType(Types.ARTICLE.getType());
+        if (StringUtils.isEmpty(content.getCategories())) {
+            content.setCategories("默认分类");
+        }
+        String result = contentService.publish(content);
+        if (!WebConst.SUCCESS_RESULT.equals(result)) {
+            return ResetResponseBo.fail(result);
+        }
+        return ResetResponseBo.ok();
     }
 }
