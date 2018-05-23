@@ -97,7 +97,32 @@ public class ContentService {
     }
 
     public String updateArticle(ContentVo content) {
-        return null;
+        if (content == null) {
+            return "文章对象为空";
+        }
+        if (StringUtils.isEmpty(content.getTitle())) {
+            return "文章标题不能为空";
+        }
+        if (StringUtils.isEmpty(content.getContent())) {
+            return "文章内容不能为空";
+        }
+        int titleLength = content.getTitle().length();
+        if (titleLength > WebConst.MAX_TITLE_COUNT) {
+            return "文章标题过长";
+        }
+
+        if (content.getAuthorId() == null) {
+            return "请登录后发布文章";
+        }
+
+        if (StringUtils.isEmpty(content.getSlug())) {
+            content.setSlug(null);
+        }
+        int time = DateKit.getCurrentUnixTime();
+        content.setModified(time);
+        Integer cid = content.getCid();
+        contentDao.updateByprimaryKeySelective(content);
+        return WebConst.SUCCESS_RESULT;
     }
 
     public void updateCtegory(String ordinal, String newCategory) {
