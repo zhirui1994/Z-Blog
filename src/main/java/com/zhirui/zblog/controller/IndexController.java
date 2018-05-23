@@ -42,7 +42,7 @@ public class IndexController extends BaseController {
         return this.render("index");
     }
 
-    @RequestMapping(value = "articles/{cid}", method = RequestMethod.GET)
+    @RequestMapping(value = "article/{cid}", method = RequestMethod.GET)
     public String getArticle(HttpServletRequest request, @PathVariable String cid) {
         ContentVo content = contentService.getContent(cid);
         if (content == null || "draft".equals(content.getStatus())) {

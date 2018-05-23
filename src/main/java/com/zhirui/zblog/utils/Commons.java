@@ -52,7 +52,7 @@ public final class Commons {
     }
 
     public static String permalink(Integer cid, String slug) {
-        return site_url("/articles/" + cid.toString());
+        return site_url("/article/" + cid.toString());
     }
 
     public static String permalink(ContentVo content) {

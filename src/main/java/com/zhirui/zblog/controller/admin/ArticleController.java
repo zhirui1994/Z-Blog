@@ -40,6 +40,29 @@ public class ArticleController extends BaseController {
         return "admin/article_list";
     }
 
+    @GetMapping(value = "/{cid}")
+    public String editArticle(@PathVariable String cid, HttpServletRequest request) {
+        ContentVo content = contentService.getContent(cid);
+        request.setAttribute("contents", content);
+        List<MetaVo> categories = metaService.getMetas(Types.CATEGORY.getType());
+        request.setAttribute("categories", categories);
+        request.setAttribute("active", "article");
+        return "admin/article_edit";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/modify")
+    public ResetResponseBo modifyArticle(ContentVo content, HttpServletRequest request) {
+        UserVo user = this.user(request);
+        content.setAuthorId(user.getUid());
+        content.setType(Types.ARTICLE.getType());
+        String result = contentService.updateArticle(content);
+        if (!WebConst.SUCCESS_RESULT.equals(result)) {
+            return ResetResponseBo.fail(result);
+        }
+        return ResetResponseBo.ok();
+    }
+
     @GetMapping(value = "publish")
     public String newArticle(HttpServletRequest request) {
         List<MetaVo> categories = metaService.getMetas(Types.CATEGORY.getType());
