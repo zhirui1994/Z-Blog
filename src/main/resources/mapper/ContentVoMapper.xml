@@ -191,4 +191,8 @@
         </set>
         where cid = #{cid,jdbcType=INTEGER}
     </update>
+    <delete id="deleteByprimaryKey" parameterType="java.lang.Integer">
+        delete from t_contents
+        where cid = #{cid,jdbcType=INTEGER}
+    </delete>
 </mapper>

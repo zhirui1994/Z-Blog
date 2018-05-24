@@ -54,6 +54,18 @@ public class IndexController extends BaseController {
         return this.render("post");
     }
 
+    @GetMapping(value = "article/{cid}/preview")
+    public String articlePreview(HttpServletRequest request, @PathVariable String cid) {
+        ContentVo content = contentService.getContent(cid);
+        if (content == null) {
+            return this.render_404();
+        }
+        request.setAttribute("article", content);
+        request.setAttribute("is_post", true);
+        completeArticle(request, content);
+        return this.render("post");
+    }
+
     private void completeArticle(HttpServletRequest request, ContentVo content) {
         if (content.getAllowComment()) {
             String cp = request.getParameter("cp");

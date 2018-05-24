@@ -85,4 +85,14 @@ public class ArticleController extends BaseController {
         }
         return ResetResponseBo.ok();
     }
+
+    @ResponseBody
+    @PostMapping(value = "/delete")
+    public ResetResponseBo delete(@RequestParam int cid, HttpServletRequest request) {
+        String result = contentService.deleteByCid(cid);
+        if (!WebConst.SUCCESS_RESULT.equals(result)) {
+            return ResetResponseBo.fail(result);
+        }
+        return ResetResponseBo.ok();
+    }
 }

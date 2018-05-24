@@ -93,7 +93,12 @@ public class ContentService {
     }
 
     public String deleteByCid(Integer cid) {
-        return null;
+        ContentVo content = this.getContent(cid + "");
+        if (content != null) {
+            contentDao.deleteByprimaryKey(cid);
+            return WebConst.SUCCESS_RESULT;
+        }
+        return "数据为空";
     }
 
     public String updateArticle(ContentVo content) {
