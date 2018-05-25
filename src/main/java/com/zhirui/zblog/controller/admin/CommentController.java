@@ -29,8 +29,9 @@ public class CommentController extends BaseController {
         UserVo user = this.user(request);
         CommentVoExample commentVoExample = new CommentVoExample();
         commentVoExample.setOrderByClause("coid desc");
-//        commentVoExample.crea
-        PageInfo<CommentVo> commentVoPageInfo = commentService.getComments(null, 1, 100);
+//        commentVoExample.createCriteria()
+        PageInfo<CommentVo> commentVoPageInfo = commentService.getCommentsWithPage(commentVoExample, page, limit);
+        request.setAttribute("comments", commentVoPageInfo);
         return "admin/comment_list";
     }
 }

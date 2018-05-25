@@ -25,4 +25,6 @@ public interface CommentVoMapper {
     List<CommentVo> selectByPageWithBLOBs(int limit);
 
     long count();
+
+    List<CommentVo> selectByExampleWithBLOBs(CommentVoExample commentVoExample);
 }
