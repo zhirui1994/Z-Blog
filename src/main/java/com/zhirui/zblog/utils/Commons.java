@@ -1,5 +1,6 @@
 package com.zhirui.zblog.utils;
 
+import com.github.pagehelper.PageInfo;
 import com.zhirui.zblog.constant.WebConst;
 import com.zhirui.zblog.model.Vo.ContentVo;
 import org.springframework.stereotype.Component;
@@ -157,5 +158,15 @@ public final class Commons {
             return TaleUtils.mdToHtml(value);
         }
         return "";
+    }
+
+    /**
+     * 判断分页中是否有数据
+     *
+     * @param paginator
+     * @return
+     */
+    public static boolean is_empty(PageInfo paginator) {
+        return paginator == null || (paginator.getList() == null) || (paginator.getList().size() == 0);
     }
 }
