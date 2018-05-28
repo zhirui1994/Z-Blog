@@ -2,17 +2,22 @@ package com.zhirui.zblog.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhirui.zblog.dao.AttachVoMapper;
 import com.zhirui.zblog.model.Vo.AttachVo;
 import com.zhirui.zblog.model.Vo.AttachVoExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class AttachService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AttachService.class);
+
+    @Resource
+    private AttachVoMapper attachDao;
 
     public PageInfo<AttachVo> getAttachs(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
